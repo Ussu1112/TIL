@@ -5,7 +5,7 @@ JavaScript는 프로토타입 기반의 동적 다중 패러다임 스크립트 
 JavaScript의 표준은 ECMAScript입니다. 2012년 기준 최신 브라우저는 모두 ECMAScript 5.1을 온전히 지원합니다. 
 
 
-**JIT 컴파일러**
+#JIT 컴파일러
 
 JIT (Just-In-Time)컴파일 
 또는 동적 번역(dynamic translation)은 프로그램을 실제 실행하는 시점에 기계어로 번역하는 컴파일 기법이다. 
