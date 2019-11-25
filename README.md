@@ -1,6 +1,10 @@
 # TIL-Javascript-
 Today I learned
 
+
+# 개인공부 저장소
+
+
 md (markdown) 문서 작성법
 
 . 다음줄 넘기기 - 엔터 두번
@@ -47,7 +51,3 @@ https://developer.mozilla.org/ko/docs/Web/JavaScript
 - 1초라도 안보이면
 - 2렇게 초조한데
 - 3초는 어떻게 기다려
-
-* 이야이야이야이야
-* 4랑해 널 사랑해
-* 5늘은 말할 거야

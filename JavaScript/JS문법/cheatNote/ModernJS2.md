@@ -89,6 +89,73 @@ mySet.forEach(function(v){
 mySet.delete("crong");
 ```
 
+### WeakSet
+
+참조를 가지고 있는 객체만 저장이 가능하다.
+객체형태를 중복없이 저장하려고 할 때 유용하다.
+
+```javascript
+let arr = [1,2,3,4];
+let arr2 = [5,6,7,8];
+let obj = {arr, arr2};
+let ws = new WeakSet()
+
+ws.add(arr);
+ws.add(arr2);
+ws.add(obj);
+
+//arr = null; 가비지컬렉션 대상이 된다.
+
+console.log(ws);
+```
+
+
+### map & WeakMap
+
+Array를 개선 -> Set,WeakSet
+Object를 개선 -> map, WeakMap
+
+map은 key/value 구조
+
+
+```javascript
+let wm = new WeakMap();
+let myfun = function(){};//이 함수가 얼마나 실행됐지? 를 알려고 할 때.
+
+wm.set(myfun,0);
+
+console.log(wm); //WeakMap {f => 0}
+console.log(wm.get(myfun)); // 0
+myfun = null;
+console.log(wm.has(myfun)); //false
+```
+
+
+### WeakMap 활용 (WeakMap 클래스 인스턴스 변수 보호하기)
+
+인스턴스 관리를 용이하게 하기위해
+
+
+```javascript
+
+const wm = new WeakMap();//프라이빗한 변수를 클래스에서 만들어 쓸 때
+
+function Area(height,width){
+    // this.height = height;
+    // this.width = width;
+    wm.set(this, {height, width});
+}
+
+Area.prototype.getArea = function(){
+    const {height, width} = wm.get(this);
+    // return this.height = this.width;
+    return height * width;   
+}
+
+let myarea = new Area(10,20);
+console.log(myarea.getArea());
+
+```
 
 
 #### ref ..
