@@ -1,4 +1,4 @@
-package day01;
+package LiveClass.day01;
 
 import java.util.LinkedList;
 

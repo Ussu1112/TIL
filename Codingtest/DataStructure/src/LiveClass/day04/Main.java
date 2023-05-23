@@ -1,4 +1,4 @@
-package day04;
+package LiveClass.day04;
 
 import java.io.BufferedReader;
 import java.io.IOException;

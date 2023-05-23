@@ -1,4 +1,4 @@
-package day03.Search;
+package LiveClass.day03.Search;
 
 import java.util.Scanner;
 

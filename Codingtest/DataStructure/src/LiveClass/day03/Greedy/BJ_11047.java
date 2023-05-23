@@ -1,4 +1,4 @@
-package day03.Greedy;
+package LiveClass.day03.Greedy;
 
 import java.util.Scanner;
 

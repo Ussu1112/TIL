@@ -1,9 +1,8 @@
-package day02;
+package LiveClass.day02;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class PM_42748 {
     public static void main(String[] args) {
