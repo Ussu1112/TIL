@@ -22,6 +22,7 @@ public class MyLinkedQueue<T> implements IQueue<T> {
 
     @Override
     public T poll() {
+        // dequeue
         if (this.isEmpty()) {
             throw new IllegalStateException();
         }
