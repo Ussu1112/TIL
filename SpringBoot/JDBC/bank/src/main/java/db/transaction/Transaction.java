@@ -1,7 +1,13 @@
-package db.model;
+package db.transaction;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.sql.Timestamp;
 
+@Getter
+@ToString
 public class Transaction {
     private int transactionNumber; //PK
     private int transactionAmount;
@@ -11,6 +17,7 @@ public class Transaction {
     private int transactionDAccountNumber;
     private Timestamp transactionCreatedAt;
 
+    @Builder
     public Transaction(int transactionNumber, int transactionAmount, int transactionWBalance, int transactionDBalance, int transactionWAccountNumber, int transactionDAccountNumber, Timestamp transactionCreatedAt) {
         this.transactionNumber = transactionNumber;
         this.transactionAmount = transactionAmount;

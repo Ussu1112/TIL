@@ -1,5 +1,7 @@
 package db.model;
 
+import lombok.Getter;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class AccountDAO {
     private Connection connection;
 
@@ -14,7 +17,7 @@ public class AccountDAO {
         this.connection = connection;
     }
 
-    public Account getAccountNumber(int accountNumber){
+    public Account getAccountByNumber(int accountNumber){
         String query = "select * from account_tb where account_number = ?";
 
         try {
