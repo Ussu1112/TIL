@@ -1,5 +1,6 @@
 package db.model;
 
+import lombok.Builder;
 import lombok.Getter;
 
 import java.sql.Timestamp;
@@ -11,6 +12,7 @@ public class Account {
     private int accountBalance;
     private Timestamp accountCreatedAt;
 
+    @Builder
     public Account(int accountNumber, String accountPassword, int accountBalance, Timestamp accountCreatedAt) {
         this.accountNumber = accountNumber;
         this.accountPassword = accountPassword;
