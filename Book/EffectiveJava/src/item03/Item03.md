@@ -1,4 +1,4 @@
-## Item3. private 생성자나 열거 타입으로 싱글턴임을 보증하라.
+## Item03. private 생성자나 열거 타입으로 싱글턴임을 보증하라.
 
 싱글턴(Singleton)이란?
 인스턴스를 오직 하나만 생성할 수 있는 클래스를 말한다.
@@ -66,28 +66,28 @@ public class Main {
         staticFactorySingleton singleton1 = staticFactorySingleton.getInstance();
         staticFactorySingleton singleton2 = staticFactorySingleton.getInstance();
 
-        System.out.println(singleton1); //item3.staticFactorySingleton@7c30a502
-        System.out.println(singleton2); //item3.staticFactorySingleton@7c30a502
+        System.out.println(singleton1); //item03.staticFactorySingleton@7c30a502
+        System.out.println(singleton2); //item03.staticFactorySingleton@7c30a502
 
-        Class<?> clazz = Class.forName("item3.staticFactorySingleton");
+        Class<?> clazz = Class.forName("item03.staticFactorySingleton");
         Constructor<?> constructor = clazz.getDeclaredConstructor();
 
         constructor.setAccessible(true);
         staticFactorySingleton singleton3 = (staticFactorySingleton) constructor.newInstance();
-        System.out.println(singleton3); //item3.staticFactorySingleton@49e4cb85
+        System.out.println(singleton3); //item03.staticFactorySingleton@49e4cb85
 
         publicSingleton singleton4 = publicSingleton.INSTANCE;
         publicSingleton singleton5 = publicSingleton.INSTANCE;
 
-        System.out.println(singleton4); //item3.publicSingleton@43a25848
-        System.out.println(singleton5); //item3.publicSingleton@43a25848
+        System.out.println(singleton4); //item03.publicSingleton@43a25848
+        System.out.println(singleton5); //item03.publicSingleton@43a25848
 
-        Class<?> clazz2 = Class.forName("item3.publicSingleton");
+        Class<?> clazz2 = Class.forName("item03.publicSingleton");
         Constructor<?> constructor2 = clazz2.getDeclaredConstructor();
 
         constructor2.setAccessible(true);
         publicSingleton singleton6 = (publicSingleton) constructor2.newInstance();
-        System.out.println(singleton6); //item3.publicSingleton@3ac3fd8b
+        System.out.println(singleton6); //item03.publicSingleton@3ac3fd8b
     }
 }
 ```
@@ -99,7 +99,7 @@ public class Main {
 public class Main {
     public static void main(String[] args) throws Exception {
         staticFactorySingleton singleton1 = staticFactorySingleton.getInstance();
-        System.out.println(singleton1); // item3.staticFactorySingleton@7c30a502
+        System.out.println(singleton1); // item03.staticFactorySingleton@7c30a502
 
         // serialization
         File file = new File("./Singleton.file");
@@ -116,7 +116,7 @@ public class Main {
             result = (staticFactorySingleton) ois.readObject();
         }
 
-        System.out.println(result); // item3.staticFactorySingleton@5f375618
+        System.out.println(result); // item03.staticFactorySingleton@5f375618
     }
 }
 ```

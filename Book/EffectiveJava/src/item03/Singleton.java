@@ -1,4 +1,4 @@
-package item3;
+package item03;
 
 public enum Singleton {
     INSTANCE;
