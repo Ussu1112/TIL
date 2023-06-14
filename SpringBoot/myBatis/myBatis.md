@@ -125,3 +125,97 @@ key=value&key=value (form태그의 기본 전송 전략)
 컨트롤러의 메서드는 매개변수에서 두가지 방식으로 데이터를 받는다.   
 1. 그냥 변수, 2. DTO(Object)   
 주의 : key이름과 변수이름이 동일해야 한다.  
+
+
+## 230614 
+
+- HttpServletRequest
+
+Controller 매개변수에는 request정보와 IoC 컨테이너 정부를 전부 주입할 수 있다.
+
+해당 코드는 가능한가?
+@Autowired
+private HttpServletRequest request;
+-> 싱글톤으로 관리가 되는 것이기 때문에 불가
+
+@Autowired
+private HttpSession session;
+-> 독립적으로 하나만 가지고 있기 때문에 가능
+
+
+- 프레임워크에서는 model을 정의 하여 사용하지만 원래는 HttpServletRequest request에 저장하는 것이다.
+request.setAttribute("accountList", accountList);
+request.setAttribute("name", "gildong");
+- 프레임 워크 사용시에는 model에 add하여 사용한다.
+
+
+DTO는 똑같은게 존재해도 공유해서 쓰지 않는다.
+-> DTO는 화면에 나타나는 데이터 (자주 변경될 수 있음)
+
+
+```java
+@GetMapping({ "/", "/account" })
+    public String main(Model model) {
+        // 부가 로직 - 공통 코드로 뺄 수 있다. 리플렉션 활용하여 AOP로 활용
+        // 1. 인증 검사 (시큐리티, 인터셉터)
+        // 다운캐스팅
+        User principal = (User) session.getAttribute("principal");
+        if (principal == null){
+            throw new AuthException("인증되지 않았습니다.");
+        }
+        // 부가 로직 끝
+
+        // 핵심로직
+        // 2. 레포지토리 - 조회
+        List<Account> accountList = accountRepository.findByUserId(principal.getId());
+
+        // 3. 조회된 결과를 - 가방에 담는다. (request)
+        model.addAttribute("accountList", accountList);
+        model.addAttribute("name", "gildong");
+
+        // 핵심 로직 끝
+        return "account/main";
+    }
+```
+
+부가 로직과 핵심 로직으로 나누어 작성한다.
+부가 로직은 공통 코드로 뺄 수 있다. 리플렉션 활용하여 AOP로 활용
+
+
+### JSP
+
+
+jsp - foreach
+```jsp
+<c:forEach var="account" items="${accountList}">
+    <tr>
+    <td><a href=/account/${account.id}>${account.number}</a></td>
+    <td>${account.balance}</td>
+    </tr>
+</c:forEach>
+```
+
+jsp - 로직에 따른 분기
+```jsp
+<c:choose>
+    <c:when test="${principal != null}">
+        <li><a href="/account">계좌목록(인증)</a></li>
+        <li><a href="/account/saveForm">계좌생성(인증)</a></li>
+        <li><a href="/account/transferForm">이체하기(인증)</a></li>
+        <li><a href="/logout">로그아웃</a></li>
+    </c:when>
+    <c:otherwise>
+        <li><a href="/loginForm">로그인</a></li>
+        <li><a href="/joinForm">회원가입</a></li>
+        <li><a href="/account/withdrawForm">출금하기(미인증)</a></li>
+        <li><a href="/account/depositForm">입금하기(미인증)</a></li>
+    </c:otherwise>
+</c:choose>
+```
+
+
+
+공부해볼만한 것
+1. 소켓통신
+2. 네트워크 이론 (유튜브)
+3. 디자인패턴 (SOLID)
