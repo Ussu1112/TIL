@@ -1,25 +1,15 @@
 package OnlineClass.example;
 
-
-import java.io.*;
 import java.util.*;
 
 public class Main {
 
-    private static final int capacity = 30;
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        List<Integer> attendance = new ArrayList<>(capacity);
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
 
-        String input;
-        while ((input = br.readLine()) != null && !input.isEmpty()){
-            attendance.add(Integer.parseInt(input));
-        }
-        attendance.sort(Comparator.naturalOrder());
+        char letter = sc.next().charAt(0);
+        int result = letter;
 
-        for (int i = 1; i <= capacity; i++) {
-            if (!attendance.contains(i))
-                System.out.println(i);
-        }
+        System.out.println(result);
     }
 }
