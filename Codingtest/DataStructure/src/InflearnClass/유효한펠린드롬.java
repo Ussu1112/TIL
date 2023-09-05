@@ -52,9 +52,19 @@ public class 유효한펠린드롬 {
         return YES;
     }
 
+    private static String solution2(String input){
+        input = input.toUpperCase().replaceAll("[^A-Z]", "");
+        String sb = new StringBuilder(input).reverse().toString();
+        if (input.equals(sb))
+            return YES;
+        else
+            return NO;
+    }
+
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        String inputToLower = sc.nextLine().toLowerCase();
-        System.out.println(solution(inputToLower));
+        String input = sc.nextLine();
+        System.out.println(solution(input.toLowerCase()));
+        System.out.println(solution2(input));
     }
 }

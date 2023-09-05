@@ -26,6 +26,7 @@ public class 숫자만추출 {
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
         System.out.println(solution(input));
+        System.out.println(solution2(input));
     }
 
     private static int solution(String input) {
@@ -37,5 +38,17 @@ public class 숫자만추출 {
             }
         }
         return Integer.parseInt(answer.toString());
+    }
+
+    private static int solution2(String input) {
+        int answer = 0;
+
+        for (char x : input.toCharArray()) {
+            if (Character.isDigit(x)) {
+                answer = answer * 10 + (x-48);
+            }
+        }
+
+        return answer;
     }
 }

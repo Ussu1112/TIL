@@ -25,21 +25,21 @@ public class 회문문자열 {
     private static final String YES = "YES";
     private static final String NO = "NO";
 
-    private static String solution(String input){
+    private static String solution(String input) {
         Stack<Character> stack = new Stack<>();
         String inputToLower = input.toLowerCase();
 
         if (input.length() % 2 == 1) {
             StringBuilder str = new StringBuilder(inputToLower);
-            str.deleteCharAt(str.length()/2);
+            str.deleteCharAt(str.length() / 2);
             inputToLower = String.valueOf(str);
         }
 
-        for (int i = 0; i < inputToLower.length()/2; i++)
+        for (int i = 0; i < inputToLower.length() / 2; i++)
             stack.push(inputToLower.charAt(i));
 
-        for (int i = input.length()/2; i < inputToLower.length(); i++){
-            if (stack.peek() == inputToLower.charAt(i)){
+        for (int i = input.length() / 2; i < inputToLower.length(); i++) {
+            if (stack.peek() == inputToLower.charAt(i)) {
                 stack.pop();
             } else {
                 return NO;
@@ -48,9 +48,18 @@ public class 회문문자열 {
         return YES;
     }
 
+    private static String solution2(String input){
+        String sb = new StringBuilder(input).reverse().toString();
+        if(input.equalsIgnoreCase(sb))
+            return YES;
+        else
+            return NO;
+    }
+
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
         System.out.println(solution(input));
+        System.out.println(solution2(input));
     }
 }
