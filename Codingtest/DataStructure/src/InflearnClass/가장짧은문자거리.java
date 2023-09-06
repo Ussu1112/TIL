@@ -7,26 +7,35 @@ public class 가장짧은문자거리 {
         Scanner sc = new Scanner(System.in);
         String input = sc.next();
         char inputChar = sc.next().charAt(0);
-        System.out.println(solution(input, inputChar));
+        for (int x: solution(input, inputChar)) {
+            System.out.print(x + " ");
+        }
     }
 
-    private static String solution(String input, char inputChar) {
+    private static int[] solution(String input, char inputChar) {
         char[] inputArr = input.toCharArray();
-        StringBuilder sb = new StringBuilder();
+        int[] answer = new int[input.length()];
+        int count = 1000;
 
         for (int i = 0; i < inputArr.length; i++) {
-            int count = 0;
-            for (int j = i; j < inputArr.length; j++) {
-                if (inputArr[j] == inputChar){
-                    break;
-                } else {
-                    count++;
-                }
+            if (inputArr[i] == inputChar){
+                count = 0;
+            } else {
+                count++;
             }
-            sb.append(count);
+            answer[i] = count;
         }
 
-        return sb.toString();
-    }
+        count = 1000;
 
+        for (int i = inputArr.length-1; i >= 0; i--) {
+            if (inputArr[i] == inputChar){
+                count = 0;
+            } else {
+                count++;
+                answer[i] = Math.min(answer[i], count);
+            }
+        }
+        return answer;
+    }
 }
