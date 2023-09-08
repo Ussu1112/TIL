@@ -1,4 +1,4 @@
-package InflearnClass;
+package InflearnClass.String;
 
 /*
 * 설명

@@ -1,4 +1,4 @@
-package InflearnClass;
+package InflearnClass.String;
 
 import java.util.Scanner;
 
