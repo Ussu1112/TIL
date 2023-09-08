@@ -10,19 +10,16 @@ public class 소수_에라토스테네스체 {
     }
 
     private static void solution(int count) {
-        int answer = 1;
-
-        for (int i = 3; i < count; i++) {
-            for(int j = 2; j*j <= i; j++){
-                if(i % j != 0) {
-                    System.out.print("i = " + i);
-                    System.out.println(" j = " + j);
-                    answer++;
-                    break;
+        int answer = 0;
+        int[] ch = new int[count+1];
+        for (int i = 2; i < count; i++) {
+            if(ch[i] == 0){
+                answer++;
+                for (int j = 0; j <= count; j= j+i) {
+                    ch[j] = 1;
                 }
             }
         }
-
         System.out.println(answer);
     }
 }
